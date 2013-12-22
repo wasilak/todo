@@ -1,5 +1,11 @@
 {
     "require": {
-        "slim/slim": "2.*"
+        "slim/slim": "2.*",
+        "doctrine/orm": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Wasilak\\": "lib"
+            }
     }
 }
