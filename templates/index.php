@@ -36,7 +36,7 @@
 	$(document).ready(function()
 	{
 		$.fn.editable.defaults.mode = 'inline';
-		
+
 		var todoList = new TodoList();
 
 		function initList()

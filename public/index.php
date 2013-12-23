@@ -62,6 +62,7 @@ $app->post('/todos', function() use ($entityManager) {
 	$entityManager->flush();
 
 	$data->id = $todo->getId();
+
 	echo json_encode($data);
 });
 
@@ -77,17 +78,12 @@ $app->put('/todos/:id', function($id) use ($entityManager) {
 	$entityManager->flush();
 
 	$data->id = $todo->getId();
+
 	echo json_encode($data);
 });
 
 $app->get('/', function () use ($app, $entityManager) {
 	$app->render('index.php');
 })->name('home');
-
-
-// $app->delete('/todo/:id',   'deleteTodo');
-// $app->put('/todo/:id', 'updateTodo');
-// $app->get('/todo/search/:query', 'findByName');
-
 
 $app->run();
