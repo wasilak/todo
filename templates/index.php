@@ -3,6 +3,7 @@
 <head>
 	<title>ToDo</title>
 	<link rel="stylesheet" href="<?php echo URI; ?>/assets/bootstrap/css/bootstrap.min.css">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 </head>
 <body>
 <input type="text" name="todoName" id="todoName" placeholder="Enter ToDo name"><button type="button" id="addTodo">Add</button>
@@ -19,6 +20,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="<?php echo URI; ?>/assets/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
 <script src="<?php echo URI; ?>/assets/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo URI; ?>/assets/js/backbone.js" type="text/javascript" charset="utf-8"></script>
 
@@ -32,6 +35,8 @@
 
 	$(document).ready(function()
 	{
+		$.fn.editable.defaults.mode = 'inline';
+		
 		var todoList = new TodoList();
 
 		function initList()

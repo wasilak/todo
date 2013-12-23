@@ -10,8 +10,10 @@ var TodoView = Backbone.View.extend({
   },
   render: function()
   {
-    var html = this.model.get('name') + ' <span class="removeTodoLink">remove</>';
+    var html = '<span class="editTodoLink">' + this.model.get('name') + '</span> <span class="removeTodoLink">remove</>';
     $(this.el).html(html);
+
+    this.editTodo(this.model);
   },
   removeTodo: function()
   {
@@ -20,7 +22,19 @@ var TodoView = Backbone.View.extend({
       this.model.destroy();
     }
   },
-  remove: function(){
+  remove: function()
+  {
     this.$el.remove();
+  },
+  editTodo: function(model)
+  {
+    $(this.el).find('span.editTodoLink').editable({
+        type: 'text',
+        title: 'update',
+        success: function(response, newValue) {
+            model.set('name', newValue);
+            model.save();
+        }
+    });
   }
 });

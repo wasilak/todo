@@ -65,6 +65,21 @@ $app->post('/todos', function() use ($entityManager) {
 	echo json_encode($data);
 });
 
+// update
+$app->put('/todos/:id', function($id) use ($entityManager) {
+	$request = \Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody());
+
+	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
+	$todo->setName($data->name);
+
+	$entityManager->persist($todo);
+	$entityManager->flush();
+
+	$data->id = $todo->getId();
+	echo json_encode($data);
+});
+
 $app->get('/', function () use ($app, $entityManager) {
 	$app->render('index.php');
 })->name('home');
