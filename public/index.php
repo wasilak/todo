@@ -8,6 +8,7 @@ $entityManager = $db->getEntityManager();
 
 $app = new \Slim\Slim(array('templates.path'=>TEMPLATES_PATH));
 
+// show
 $app->get('/todos/:id', function($id) use ($entityManager) {
 
 	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
@@ -19,6 +20,22 @@ $app->get('/todos/:id', function($id) use ($entityManager) {
 	echo json_encode($object);
 });
 
+// delete
+$app->delete('/todos/:id', function($id) use ($entityManager) {
+
+	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
+
+	$object = new \stdClass();
+	$object->id = $todo->getId();
+	$object->name = $todo->getName();
+
+	$entityManager->remove($todo);
+	$entityManager->flush();
+
+	echo json_encode($object);
+});
+
+// list
 $app->get('/todos', function() use ($entityManager) {
 	$todoRepository = $entityManager->getRepository('\Wasilak\Models\Todo');
 	$todos = $todoRepository->findAll();
@@ -33,6 +50,7 @@ $app->get('/todos', function() use ($entityManager) {
 	echo json_encode($data);
 });
 
+// add
 $app->post('/todos', function() use ($entityManager) {
 	$request = \Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody());
