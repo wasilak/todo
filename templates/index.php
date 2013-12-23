@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>ToDo</title>
+	<link rel="stylesheet" href="<?php echo URI; ?>/assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 <input type="text" name="todoName" id="todoName" placeholder="Enter ToDo name"><button type="button" id="addTodo">Add</button>
@@ -14,7 +15,10 @@
 <footer>
 	ToDo by <a href="http://wasil.org">wasilak</a>&copy;
 </footer>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="<?php echo URI; ?>/assets/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="<?php echo URI; ?>/assets/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo URI; ?>/assets/js/backbone.js" type="text/javascript" charset="utf-8"></script>
 
