@@ -1,7 +1,8 @@
 var TodoView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'a',
+  className: 'list-group-item',
   events: {
-    'click span.removeTodoLink': 'removeTodo'
+    'click button.removeTodoLink': 'removeTodo'
   },
   initialize: function()
   {
@@ -10,7 +11,9 @@ var TodoView = Backbone.View.extend({
   },
   render: function()
   {
-    var html = '<span class="editTodoLink">' + this.model.get('name') + '</span> <span class="removeTodoLink">remove</>';
+    var html = '<span class="editTodoLink">' + this.model.get('name') + '</span> '+
+                '<!--<span class="badge">14</span>-->'+
+                '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>';
     $(this.el).html(html);
 
     this.editTodo(this.model);
