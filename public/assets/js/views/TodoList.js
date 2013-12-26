@@ -13,7 +13,9 @@ var TodoListView = Backbone.View.extend({
   {
     var todoView = new TodoView({model: todoItem});
     todoView.render();
-    this.$el.append(todoView.el);
+    var html = $(todoView.el);
+    this.$el.append(html);
+    html.fadeIn('fast').css("display","block");
   },
   addAll: function() {
     this.collection.forEach(this.addOne, this);

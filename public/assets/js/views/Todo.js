@@ -48,7 +48,10 @@ var TodoView = Backbone.View.extend({
   },
   remove: function()
   {
-    this.$el.remove();
+    this.$el.fadeOut("fast", function()
+      {
+        this.remove();
+      });
   },
   editTodo: function(model, checked)
   {
