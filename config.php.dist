@@ -1,0 +1,8 @@
+<?php
+
+define('DB_DRIVER', 'pdo_mysql');
+define('DB_USER', 'db_user');
+define('DB_PASSWORD', 'db_pass');
+define('DB_DATABASE', 'db_name');
+define('DB_DEV_MODE', false);
+define('DB_HOST', '127.0.0.1');
