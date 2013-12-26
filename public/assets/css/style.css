@@ -37,3 +37,25 @@
 {
   display: none;
 }
+
+.todoDate
+{
+  font-size: 0.8em;
+  line-height: 2em;
+  margin-right: 10px;
+  color: lightgray;
+}
+
+.completed .todoDate
+{
+  color: lightgray;
+  cursor: default;
+  text-decoration: line-through;
+}
+
+.completed:hover .todoDate
+{
+  color: lightgray;
+  cursor: default;
+  text-decoration: line-through;
+}

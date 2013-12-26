@@ -42,7 +42,7 @@ class Todo
         $this->completed = $completed;
     }
 
-    public function getCreatedAt($createdAt)
+    public function getCreatedAt()
     {
         return $this->created_at;
     }

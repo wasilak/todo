@@ -43,6 +43,7 @@ $app->get('/todos', function() use ($entityManager) {
 		$object->id = $todo->getId();
 	    $object->name = $todo->getName();
 	    $object->completed = $todo->getCompleted();
+	    $object->createdAt = $todo->getCreatedAt();
 	    $data[] = $object;
 	}
 
@@ -63,6 +64,9 @@ $app->post('/todos', function() use ($entityManager) {
 	$entityManager->flush();
 
 	$data->id = $todo->getId();
+	$data->completed = $todo->getCompleted();
+	$data->name = $todo->getName();
+	$data->createdAt = $todo->getCreatedAt();
 
 	echo json_encode($data);
 });

@@ -19,9 +19,12 @@ var TodoView = Backbone.View.extend({
       $(this.el).addClass(' completed');
     }
 
-    var html = '<input type="checkbox" class="checkTodo" ' + checked + ' /><span class="editTodoLink">' + this.model.get('name') + '</span> '+
-                '<!--<span class="badge">14</span>-->'+
-                '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>';
+    var date = moment(this.model.get('createdAt').date);
+
+    var html = '<input type="checkbox" class="checkTodo" ' + checked + ' />'+
+                '<span class="editTodoLink">' + this.model.get('name') + '</span> '+
+                '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>'+
+                '<span class="todoDate pull-right">' + date.calendar() + '</span> ';
     $(this.el).html(html);
 
     this.editTodo(this.model, checked);

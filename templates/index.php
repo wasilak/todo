@@ -85,6 +85,7 @@
 
 	<script src="<?php echo URI; ?>/assets/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/backbone.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo URI; ?>/assets/js/moment-with-langs.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/iCheck/icheck.min.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="<?php echo URI; ?>/assets/js/models/Todo.js" type="text/javascript" charset="utf-8"></script>
