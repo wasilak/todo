@@ -14,6 +14,9 @@ class Todo
     /** @Column(type="string", length=1024, nullable=false) **/
     protected $name;
 
+    /** @Column(type="datetime", nullable=false) **/
+    protected $created_at;
+
     public function getId()
     {
         return $this->id;
@@ -37,5 +40,15 @@ class Todo
     public function setCompleted($completed)
     {
         $this->completed = $completed;
+    }
+
+    public function getCreatedAt($createdAt)
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
     }
 }

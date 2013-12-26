@@ -55,6 +55,7 @@ $app->post('/todos', function() use ($entityManager) {
 	$todo = new Models\Todo();
 	$todo->setName($data->name);
 	$todo->setCompleted($data->completed);
+	$todo->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
 	$entityManager->persist($todo);
 	$entityManager->flush();
