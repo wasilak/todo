@@ -128,8 +128,10 @@
 			{
 				var inputField = $('#todoName');
 
-				if ('' != inputField.val()) {
-					var todoDetails = {name: inputField.val()};
+				var name = inputField.val().trim();
+
+				if ('' != name) {
+					var todoDetails = {name: name};
 
 					var todo = new TodoModel();
 
@@ -146,6 +148,7 @@
 				    });
 				} else {
 					// TODO: add better info about empty Todo name
+					inputField.val('');
 				    alert('Todo name cannot be empty :/');
 				}
 			}
