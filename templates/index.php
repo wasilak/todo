@@ -128,20 +128,26 @@
 			{
 				var inputField = $('#todoName');
 
-				var todoDetails = {name: inputField.val()};
+				if ('' != inputField.val()) {
+					var todoDetails = {name: inputField.val()};
 
-				var todo = new TodoModel();
+					var todo = new TodoModel();
 
-				todo.save(todoDetails, {
-			        success: function (todo)
-			        {
-			    		todoList.add(todo);
-			    		inputField.val('');
-			        },
-			        error: function(todo)
-			        {
-			        }
-			    });
+					todo.save(todoDetails, {
+				        success: function (model, xhr, options)
+				        {
+				    		todoList.add(model);
+				    		inputField.val('');
+				        },
+				        error: function(model, xhr, options)
+				        {
+				        	// TODO: error handling
+				        }
+				    });
+				} else {
+					// TODO: add better info about empty Todo name
+				    alert('Todo name cannot be empty :/');
+				}
 			}
 
 			$('#todoName').keypress(function(e) {

@@ -55,6 +55,8 @@ $app->post('/todos', function() use ($entityManager) {
 	$request = \Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody());
 
+    if ('' === $data->name) $data->name = null;
+
 	$todo = new Models\Todo();
 	$todo->setName($data->name);
 	$todo->setCompleted($data->completed);
