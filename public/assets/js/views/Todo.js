@@ -2,8 +2,10 @@ var TodoView = Backbone.View.extend({
   tagName: 'a',
   className: 'list-group-item',
   events: {
-    'click button.removeTodoLink': 'removeTodo'
+    'click button.removeTodoLink': 'removeTodo',
+    'click input.checkTodo': 'checkTodo'
   },
+  editable : false,
   initialize: function()
   {
     this.model.on('change', this.render, this);
@@ -11,12 +13,18 @@ var TodoView = Backbone.View.extend({
   },
   render: function()
   {
-    var html = '<span class="editTodoLink">' + this.model.get('name') + '</span> '+
+    var checked = '';
+    if (1 == this.model.get('completed')) {
+      checked = 'checked="checked"';
+      $(this.el).addClass(' completed');
+    }
+
+    var html = '<input type="checkbox" class="checkTodo" ' + checked + '><span class="editTodoLink">' + this.model.get('name') + '</span> '+
                 '<!--<span class="badge">14</span>-->'+
                 '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>';
     $(this.el).html(html);
 
-    this.editTodo(this.model);
+    this.editTodo(this.model, checked);
   },
   removeTodo: function()
   {
@@ -29,15 +37,34 @@ var TodoView = Backbone.View.extend({
   {
     this.$el.remove();
   },
-  editTodo: function(model)
+  editTodo: function(model, checked)
   {
-    $(this.el).find('span.editTodoLink').editable({
+    var disabled = false;
+    if ('' !== checked) {
+      disabled = true;
+    }
+    this.editable = $(this.el).find('span.editTodoLink').editable({
         type: 'text',
         title: 'update',
+        disabled: disabled,
         success: function(response, newValue) {
             model.set('name', newValue);
             model.save();
         }
     });
+  },
+  checkTodo: function()
+  {
+    var checkbox = $(this.el).find('input.checkTodo');
+    if (checkbox.is(':checked')) {
+      this.model.set('completed', 1);
+      $(this.el).addClass('completed');
+      this.editable.editable('disable');
+    } else {
+      this.model.set('completed', 0);
+      $(this.el).removeClass('completed');
+      this.editable.editable('enable');
+    }
+    this.model.save();
   }
 });

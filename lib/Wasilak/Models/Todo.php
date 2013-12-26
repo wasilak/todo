@@ -8,6 +8,9 @@ class Todo
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
+    /** @Column(type="smallint") **/
+    protected $completed;
+
     /** @Column(type="string", length=1024, nullable=false) **/
     protected $name;
 
@@ -24,5 +27,15 @@ class Todo
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
     }
 }

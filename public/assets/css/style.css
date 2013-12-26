@@ -2,3 +2,22 @@
 {
   cursor: pointer;
 }
+
+.completed .editTodoLink
+{
+  color: lightgray;
+  cursor: default;
+  text-decoration: line-through;
+}
+
+.completed:hover .editTodoLink
+{
+  color: lightgray;
+  cursor: default;
+  text-decoration: line-through;
+}
+
+.completed:hover .editTodoLink
+{
+  text-decoration: line-through;
+}

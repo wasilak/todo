@@ -25,14 +25,10 @@ $app->delete('/todos/:id', function($id) use ($entityManager) {
 
 	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
 
-	$object = new \stdClass();
-	$object->id = $todo->getId();
-	$object->name = $todo->getName();
-
 	$entityManager->remove($todo);
 	$entityManager->flush();
 
-	echo json_encode($object);
+	echo json_encode(true);
 });
 
 // list
@@ -44,6 +40,7 @@ $app->get('/todos', function() use ($entityManager) {
 	    $object = new \stdClass();
 		$object->id = $todo->getId();
 	    $object->name = $todo->getName();
+	    $object->completed = $todo->getCompleted();
 	    $data[] = $object;
 	}
 
@@ -57,6 +54,7 @@ $app->post('/todos', function() use ($entityManager) {
 
 	$todo = new Models\Todo();
 	$todo->setName($data->name);
+	$todo->setCompleted($data->completed);
 
 	$entityManager->persist($todo);
 	$entityManager->flush();
@@ -73,6 +71,7 @@ $app->put('/todos/:id', function($id) use ($entityManager) {
 
 	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
 	$todo->setName($data->name);
+	$todo->setCompleted($data->completed);
 
 	$entityManager->persist($todo);
 	$entityManager->flush();
