@@ -19,18 +19,18 @@ var TodoView = Backbone.View.extend({
       $(this.el).addClass(' completed');
     }
 
-    var html = '<input type="checkbox" class="checkTodo" ' + checked + '><span class="editTodoLink">' + this.model.get('name') + '</span> '+
+    var html = '<input type="checkbox" class="checkTodo" ' + checked + ' /><span class="editTodoLink">' + this.model.get('name') + '</span> '+
                 '<!--<span class="badge">14</span>-->'+
                 '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>';
     $(this.el).html(html);
 
     this.editTodo(this.model, checked);
-    this.initICheck();
+    // this.initICheck();
   },
   initICheck: function()
   {
     var $this = this;
-    $(this.el).find('input').iCheck({
+    $(this.el).find('input.checkTodo').iCheck({
       checkboxClass: 'icheckbox_square-aero',
       radioClass: 'iradio_square-aero'
     }).on('ifChecked', function(event){

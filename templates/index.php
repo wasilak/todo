@@ -63,6 +63,9 @@
     	<div class="row">
     		<div class="col-lg-12">
 		    	<div id="todoList">
+		    		<div class="loader">
+		    			<img src="assets/ajax-loader.gif" alt="">
+		    		</div>
 		    		<div class="list-group"></div>
 		    	</div>
     		</div>
@@ -101,8 +104,17 @@
 
 			function initList()
 			{
-				var todoListView = new TodoListView({collection: todoList, el: $("#todoList div")});
-				todoList.fetch();
+				var todoListView = new TodoListView({collection: todoList, el: $("#todoList div.list-group")});
+				todoList.fetch({
+					success: function()
+					{
+						$('#todoList .loader').fadeOut('fast', function()
+							{
+								$('#todoList .list-group').fadeIn();
+							}
+						);
+					}
+				});
 			}
 
 			initList();

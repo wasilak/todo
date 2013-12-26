@@ -22,3 +22,13 @@
 {
   text-decoration: line-through;
 }
+
+.loader
+{
+  text-align: center;
+}
+
+#todoList .list-group
+{
+  display: none;
+}
