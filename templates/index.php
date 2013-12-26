@@ -27,6 +27,9 @@
     <![endif]-->
 
 	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+
+    <link href="<?php echo URI; ?>/assets/iCheck/skins/square/aero.css" rel="stylesheet">
+
     <link href="<?php echo URI; ?>/assets/css/style.css" rel="stylesheet">
   </head>
 
@@ -79,12 +82,14 @@
 
 	<script src="<?php echo URI; ?>/assets/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/backbone.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo URI; ?>/assets/iCheck/icheck.min.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="<?php echo URI; ?>/assets/js/models/Todo.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/models/TodoList.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="<?php echo URI; ?>/assets/js/views/Todo.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/views/TodoList.js" type="text/javascript" charset="utf-8"></script>
+
 
 	<script type="text/javascript" charset="utf-8">
 
@@ -121,7 +126,6 @@
 			        }
 			    });
 			});
-
 		});
 	</script>
   </body>

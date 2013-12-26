@@ -25,6 +25,19 @@ var TodoView = Backbone.View.extend({
     $(this.el).html(html);
 
     this.editTodo(this.model, checked);
+    this.initICheck();
+  },
+  initICheck: function()
+  {
+    var $this = this;
+    $(this.el).find('input').iCheck({
+      checkboxClass: 'icheckbox_square-aero',
+      radioClass: 'iradio_square-aero'
+    }).on('ifChecked', function(event){
+      $this.checkOn();
+    }).on('ifUnchecked', function(event){
+      $this.checkOff();
+    });
   },
   removeTodo: function()
   {
@@ -57,14 +70,23 @@ var TodoView = Backbone.View.extend({
   {
     var checkbox = $(this.el).find('input.checkTodo');
     if (checkbox.is(':checked')) {
-      this.model.set('completed', 1);
-      $(this.el).addClass('completed');
-      this.editable.editable('disable');
+      this.checkOn();
     } else {
-      this.model.set('completed', 0);
-      $(this.el).removeClass('completed');
-      this.editable.editable('enable');
+      this.checkOff();
     }
+  },
+  checkOn: function()
+  {
+    this.model.set('completed', 1);
+    $(this.el).addClass('completed');
+    this.editable.editable('disable');
+    this.model.save();
+  },
+  checkOff: function()
+  {
+    this.model.set('completed', 0);
+    $(this.el).removeClass('completed');
+    this.editable.editable('enable');
     this.model.save();
   }
 });

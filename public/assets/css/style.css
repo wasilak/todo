@@ -1,6 +1,7 @@
 .editTodoLink
 {
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .completed .editTodoLink
