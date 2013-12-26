@@ -59,3 +59,8 @@
   cursor: default;
   text-decoration: line-through;
 }
+
+.editable-inline
+{
+  margin-left: 10px;
+}
