@@ -119,7 +119,7 @@
 
 			initList();
 
-			$('#addTodo').click(function()
+			function addTodo()
 			{
 				var inputField = $('#todoName');
 
@@ -137,6 +137,17 @@
 			        {
 			        }
 			    });
+			}
+
+			$('#todoName').keypress(function(e) {
+			    if (e.which == 13) {
+			        addTodo();
+			    }
+			});
+
+			$('#addTodo').click(function()
+			{
+				addTodo();
 			});
 		});
 	</script>
