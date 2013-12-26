@@ -36,6 +36,8 @@ $app->get('/todos', function() use ($entityManager) {
 	$todoRepository = $entityManager->getRepository('\Wasilak\Models\Todo');
 	$todos = $todoRepository->findAll();
 
+	$data = array();
+
 	foreach ($todos as $todo) {
 	    $object = new \stdClass();
 		$object->id = $todo->getId();
