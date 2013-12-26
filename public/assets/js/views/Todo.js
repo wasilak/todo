@@ -44,7 +44,7 @@ var TodoView = Backbone.View.extend({
   },
   removeTodo: function()
   {
-    var conf = confirm("Are you sure?");
+    var conf = confirm('Deleting "' + this.model.get('name') + '", are you sure?');
     if (true === conf) {
       this.model.destroy();
     }
