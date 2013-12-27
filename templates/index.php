@@ -38,10 +38,10 @@
     <div class="container">
 		<div class="header">
 			<div class="row">
-				<div class="col-lg-4 col-sm-3 col-xs-5">
+				<div class="col-lg-4 col-sm-3 hidden-xs">
 		        	<h3 class="text-muted">Your todos</h3>
 				</div>
-				<div class="col-lg-8 col-sm-9 col-xs-7">
+				<div class="col-lg-8 col-sm-9 col-xs-12">
 			        <ul class="nav nav-pills pull-right">
 			        	<li class="active"><a href="#">Home</a></li>
 			        	<li><a href="#">About</a></li>
