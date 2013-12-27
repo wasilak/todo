@@ -8,9 +8,8 @@ var TodoView = Backbone.View.extend({
   editable : false,
   initialize: function()
   {
-    this.model.on('change', this.render, this);
-    this.model.on('destroy', this.remove, this);
-    this.model.on('remove', this.remove, this);
+    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'remove', this.remove);
   },
   render: function()
   {
