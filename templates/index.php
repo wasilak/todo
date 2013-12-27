@@ -99,6 +99,8 @@
 
 		$(document).ready(function()
 		{
+			var todoListView = null;
+
 			$.fn.editable.defaults.mode = 'inline';
 
 			$.fn.editableform.buttons =
@@ -109,7 +111,7 @@
 
 			function initList()
 			{
-				var todoListView = new TodoListView({collection: todoList, el: $("#todoList div.list-group")});
+				todoListView = new TodoListView({collection: todoList, el: $("#todoList div.list-group")});
 				todoList.fetch({
 					success: function()
 					{
@@ -123,6 +125,12 @@
 			}
 
 			initList();
+
+			setInterval(function()
+				{
+				  todoList.fetch();
+				}, 3000
+			);
 
 			function addTodo()
 			{

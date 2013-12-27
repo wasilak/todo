@@ -10,6 +10,7 @@ var TodoView = Backbone.View.extend({
   {
     this.model.on('change', this.render, this);
     this.model.on('destroy', this.remove, this);
+    this.model.on('remove', this.remove, this);
   },
   render: function()
   {
@@ -17,6 +18,8 @@ var TodoView = Backbone.View.extend({
     if (1 == this.model.get('completed')) {
       checked = 'checked="checked"';
       $(this.el).addClass(' completed');
+    } else {
+      $(this.el).removeClass(' completed');
     }
 
     var date = moment(this.model.get('createdAt').date);
