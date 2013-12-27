@@ -37,12 +37,18 @@
 
     <div class="container">
 		<div class="header">
-	        <ul class="nav nav-pills pull-right">
-	        	<li class="active"><a href="#">Home</a></li>
-	        	<li><a href="#">About</a></li>
-	        	<li><a href="#">Contact</a></li>
-	        </ul>
-	        <h3 class="text-muted">Your todos</h3>
+			<div class="row">
+				<div class="col-lg-6">
+		        	<h3 class="text-muted">Your todos</h3>
+				</div>
+				<div class="col-lg-6">
+			        <ul class="nav nav-pills pull-right">
+			        	<li class="active"><a href="#">Home</a></li>
+			        	<li><a href="#">About</a></li>
+			        	<li><a href="#">Contact</a></li>
+			        </ul>
+		        </div>
+			</div>
 	    </div>
 
 		<div class="row">
