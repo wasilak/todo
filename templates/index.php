@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,29 +35,30 @@
   <body>
 
     <div class="container">
-		<div class="header">
-			<div class="row">
-				<div class="col-lg-4 col-sm-3 hidden-xs">
-		        	<h3 class="text-muted">Your todos</h3>
-				</div>
-				<div class="col-lg-8 col-sm-9 col-xs-12">
-			        <ul class="nav nav-pills pull-right">
-			        	<li class="active"><a href="#">Home</a></li>
-			        	<li><a href="#">About</a></li>
-			        	<li><a href="#">Contact</a></li>
-			        </ul>
-		        </div>
+		<div class="row">
+			<div class="col-lg-4 col-sm-3 hidden-xs">
+	        	<h3 class="text-muted">Your todos</h3>
 			</div>
-	    </div>
+			<div class="col-lg-8 col-sm-9 col-xs-12">
+		        <ul class="nav nav-pills pull-right">
+		        	<li class="active"><a href="#">Home</a></li>
+		        	<li><a href="#">About</a></li>
+		        	<li><a href="#">Contact</a></li>
+		        </ul>
+	        </div>
+		</div>
 
 		<div class="row">
 			<div class="col-lg-12">
 				<p>
 				    <div class="row">
-				    	<div class="col-lg-10">
+				    	<div class="col-lg-8 col-sm-8 col-xs-12">
 			    			<input type="text" name="todoName" id="todoName" class="form-control" placeholder="new todo...">
 				    	</div>
-				    	<div class="col-lg-2">
+				    	<div class="col-lg-2 col-sm-2 col-xs-6">
+			    			<input type="text" name="todoDueDate" id="todoDueDate" class="form-control datepicker" placeholder="due...">
+				    	</div>
+				    	<div class="col-lg-2 col-sm-2 col-xs-6">
 				    		<button type="button" id="addTodo" class="btn btn-success btn-sm btn-block pull-right">Add</button>
 				    	</div>
 
@@ -91,6 +91,7 @@
 
 	<script src="<?php echo URI; ?>/assets/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/backbone.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo URI; ?>/assets/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/moment-with-langs.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/iCheck/icheck.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -105,6 +106,24 @@
 
 		$(document).ready(function()
 		{
+			$('.datepicker').datepicker({
+		        'format'  : 'yyyy-mm-dd',
+		        'weekStart' : 1,
+		        'autoclose' : true,
+		        'todayHighlight': true
+		    });
+
+		    moment.lang('en', {
+		        calendar : {
+		            lastDay : '[Yesterday ]',
+		            sameDay : '[Today ]',
+		            nextDay : '[Tomorrow ]',
+		            lastWeek : '[last] dddd []',
+		            nextWeek : 'dddd []',
+		            sameElse : 'L'
+		        }
+		    });
+
 			var todoListView = null;
 
 			$.fn.editable.defaults.mode = 'inline';
@@ -119,6 +138,7 @@
 			{
 				todoListView = new TodoListView({collection: todoList, el: $("#todoList div.list-group")});
 				todoList.fetch({
+					reset: true,
 					success: function()
 					{
 						$('#todoList .loader').fadeOut('fast', function()
@@ -141,11 +161,16 @@
 			function addTodo()
 			{
 				var inputField = $('#todoName');
+				var dateField = $('#todoDueDate');
 
 				var name = inputField.val().trim();
+				var date = dateField.val().trim();
 
 				if ('' != name) {
-					var todoDetails = {name: name};
+					var todoDetails = {
+						name: name,
+						dueDate: date
+					};
 
 					var todo = new TodoModel();
 
@@ -154,6 +179,7 @@
 				        {
 				    		todoList.add(model);
 				    		inputField.val('');
+				    		dateField.val('');
 				        },
 				        error: function(model, xhr, options)
 				        {
@@ -168,6 +194,12 @@
 			}
 
 			$('#todoName').keypress(function(e) {
+			    if (e.which == 13) {
+			        addTodo();
+			    }
+			});
+
+			$('#todoDueDate').keypress(function(e) {
 			    if (e.which == 13) {
 			        addTodo();
 			    }

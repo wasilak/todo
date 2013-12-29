@@ -43,7 +43,9 @@ $app->get('/todos', function() use ($entityManager) {
 		$object->id = $todo->getId();
 	    $object->name = $todo->getName();
 	    $object->completed = $todo->getCompleted();
-	    $object->createdAt = $todo->getCreatedAt();
+	    $object->createdAt = $todo->getCreatedAt() ? $todo->getCreatedAt()->format("Y-m-d H:i:s") : null;
+		$object->dueDate = $todo->getDueDate() ? $todo->getDueDate()->format("Y-m-d") : null;
+
 	    $data[] = $object;
 	}
 
@@ -56,10 +58,15 @@ $app->post('/todos', function() use ($entityManager) {
     $data = json_decode($request->getBody());
 
     if ('' === trim($data->name)) $data->name = null;
-
 	$todo = new Models\Todo();
 	$todo->setName($data->name);
 	$todo->setCompleted($data->completed);
+
+	if ($data->dueDate) {
+		$todo->setDueDate(new \DateTime($data->dueDate));
+	} else {
+		$todo->setDueDate(null);
+	}
 	$todo->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
 	$entityManager->persist($todo);
@@ -68,7 +75,8 @@ $app->post('/todos', function() use ($entityManager) {
 	$data->id = $todo->getId();
 	$data->completed = $todo->getCompleted();
 	$data->name = $todo->getName();
-	$data->createdAt = $todo->getCreatedAt();
+	$data->createdAt = $todo->getCreatedAt() ? $todo->getCreatedAt()->format("Y-m-d H:i:s") : null;
+	$data->dueDate = $todo->getDueDate() ? $todo->getDueDate()->format("Y-m-d") : null;
 
 	echo json_encode($data);
 });
@@ -81,6 +89,12 @@ $app->put('/todos/:id', function($id) use ($entityManager) {
 	$todo = $entityManager->find('\Wasilak\Models\Todo', $id);
 	$todo->setName($data->name);
 	$todo->setCompleted($data->completed);
+
+	if ($data->dueDate) {
+		$todo->setDueDate(new \DateTime($data->dueDate));
+	} else {
+		$todo->setDueDate(null);
+	}
 
 	$entityManager->persist($todo);
 	$entityManager->flush();

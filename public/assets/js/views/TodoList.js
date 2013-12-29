@@ -2,8 +2,9 @@ var TodoListView = Backbone.View.extend({
   tagName: 'ul',
   initialize: function()
   {
-    this.collection.on('add', this.addOne, this);
+    this.collection.on('add', this.changed, this);
     this.collection.on('reset', this.render, this);
+    this.collection.on('change:dueDate', this.changed, this);
   },
   render: function()
   {
@@ -19,5 +20,11 @@ var TodoListView = Backbone.View.extend({
   },
   addAll: function() {
     this.collection.forEach(this.addOne, this);
+  },
+  changed: function(test, test2)
+  {
+    this.collection.sort();
+    $(this.$el).empty();
+    this.render();
   }
 });

@@ -33,34 +33,56 @@
   display: none;
 }
 
+#todoList .form-control
+{
+  height: 25px;
+}
+
+#todoList .btn
+{
+  height: 25px;
+}
+
 .list-group-item
 {
   display: none;
 }
 
-.todoDate
+.dueContainer
+{
+  margin-right: 10px;
+}
+
+.dueContainer .todoDate, .dueContainer .due
 {
   font-size: 0.8em;
   line-height: 2em;
-  margin-right: 10px;
-  color: lightgray;
 }
 
-.completed .todoDate
+.completed .dueContainer, .completed:hover .dueContainer, .completed:hover .dueContainer a
 {
   color: lightgray;
   cursor: default;
   text-decoration: line-through;
 }
 
-.completed:hover .todoDate
-{
-  color: lightgray;
-  cursor: default;
-  text-decoration: line-through;
+.completed .editable-click.editable-disabled, .completed a.editable-click.editable-disabled, .completed a.editable-click.editable-disabled:hover {
+color: lightgray;
+border-bottom: none;
 }
 
 .editable-inline
 {
   margin-left: 10px;
+}
+
+.addDue, .addDue a
+{
+  color: #fff;
+  border-bottom: dashed 1px #fff;
+}
+
+.addDue:hover, .addDue:hover a
+{
+  color: #555;
 }

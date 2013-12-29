@@ -17,6 +17,9 @@ class Todo
     /** @Column(type="datetime", nullable=false) **/
     protected $created_at;
 
+    /** @Column(type="datetime", nullable=true) **/
+    protected $due_date;
+
     public function getId()
     {
         return $this->id;
@@ -50,5 +53,15 @@ class Todo
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
+    }
+
+    public function getDueDate()
+    {
+        return $this->due_date;
+    }
+
+    public function setDueDate($dueDate)
+    {
+        $this->due_date = $dueDate;
     }
 }
