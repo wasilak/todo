@@ -67,8 +67,8 @@
 }
 
 .completed .editable-click.editable-disabled, .completed a.editable-click.editable-disabled, .completed a.editable-click.editable-disabled:hover {
-color: lightgray;
-border-bottom: none;
+  color: lightgray;
+  border-bottom: none;
 }
 
 .editable-inline
@@ -82,7 +82,26 @@ border-bottom: none;
   border-bottom: dashed 1px #fff;
 }
 
+.completed .addDue, .completed .addDue a
+{
+  color: #fff;
+}
+
 .addDue:hover, .addDue:hover a
 {
   color: #555;
+}
+
+.completed:hover .addDue
+{
+  color: #f5f5f5;
+}
+
+.completed .addDue .editable-click.editable-disabled, .completed .addDue a.editable-click.editable-disabled, .completed .addDue a.editable-click.editable-disabled:hover
+{
+  color: #f5f5f5;
+}
+.completed:hover .addDue .editable-click.editable-disabled, .completed:hover .addDue a.editable-click.editable-disabled, .completed:hover .addDue a.editable-click.editable-disabled:hover
+{
+  color: #f5f5f5;
 }
