@@ -1,22 +1,17 @@
 var Router = Backbone.Router.extend({
   routes: {
         '' : 'home',
+        'list' : 'home',
         'about': 'about',
         'contact': 'contact'
       },
       home: function() {
-        this.clear();
-        $('ul.mainNavigation #homeNav').addClass('active');
+        $('ul.mainNavigation a[href="#list"]').tab('show');
       },
       about: function() {
-        this.clear();
-        $('ul.mainNavigation #aboutNav').addClass('active');
+        $('ul.mainNavigation a[href="#about"]').tab('show');
       },
       contact: function() {
-        this.clear();
-        $('ul.mainNavigation #contactNav').addClass('active');
-      },
-      clear: function() {
-        $('ul.mainNavigation li').removeClass('active');
+        $('ul.mainNavigation a[href="#contact"]').tab('show');
       }
 });

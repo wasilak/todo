@@ -41,41 +41,51 @@
 			</div>
 			<div class="col-lg-8 col-sm-9 col-xs-12">
 		        <ul class="nav nav-pills pull-right mainNavigation">
-                    <li class="active" id="homeNav"><a href="#">Home</a></li>
+                    <li class="active" id="homeNav"><a href="#list">Home</a></li>
                     <li id="aboutNav"><a href="#about">About</a></li>
                     <li id="contactNav"><a href="#contact">Contact</a></li>
                 </ul>
 	        </div>
 		</div>
 
-		<div class="row">
-			<div class="col-lg-12">
-				<p>
-				    <div class="row">
-				    	<div class="col-lg-8 col-sm-8 col-xs-12">
-			    			<input type="text" name="todoName" id="todoName" class="form-control" placeholder="new todo...">
-				    	</div>
-				    	<div class="col-lg-2 col-sm-2 col-xs-6">
-			    			<input type="text" name="todoDueDate" id="todoDueDate" class="form-control datepicker" placeholder="due...">
-				    	</div>
-				    	<div class="col-lg-2 col-sm-2 col-xs-6">
-				    		<button type="button" id="addTodo" class="btn btn-success btn-sm btn-block pull-right">Add</button>
-				    	</div>
+		<div class="tab-content">
+		  <div class="tab-pane active" id="list">
+			<div class="row">
+				<div class="col-lg-12">
+					<p>
+					    <div class="row">
+					    	<div class="col-lg-8 col-sm-8 col-xs-12">
+				    			<input type="text" name="todoName" id="todoName" class="form-control" placeholder="new todo...">
+					    	</div>
+					    	<div class="col-lg-2 col-sm-2 col-xs-6">
+				    			<input type="text" name="todoDueDate" id="todoDueDate" class="form-control datepicker" placeholder="due...">
+					    	</div>
+					    	<div class="col-lg-2 col-sm-2 col-xs-6">
+					    		<button type="button" id="addTodo" class="btn btn-success btn-sm btn-block pull-right">Add</button>
+					    	</div>
 
-				    </div>
-			    </p>
-			</div>
-	    </div>
-    	<div class="row">
-    		<div class="col-lg-12">
-		    	<div id="todoList">
-		    		<div class="loader">
-		    			<img src="assets/ajax-loader.gif" alt="">
-		    		</div>
-		    		<div class="list-group"></div>
-		    	</div>
-    		</div>
-    	</div>
+					    </div>
+				    </p>
+				</div>
+		    </div>
+	    	<div class="row">
+	    		<div class="col-lg-12">
+			    	<div id="todoList">
+			    		<div class="loader">
+			    			<img src="assets/ajax-loader.gif" alt="">
+			    		</div>
+			    		<div class="list-group"></div>
+			    	</div>
+	    		</div>
+	    	</div>
+		  </div>
+		  <div class="tab-pane" id="about">
+		  	About :)
+		  </div>
+		  <div class="tab-pane" id="contact">
+		  	Contact :)
+		  </div>
+		</div>
 
 	    <div class="footer">
 			Todo by &copy; <a href="http://wasil.org">wasilak</a> <?php echo date("Y"); ?>
