@@ -40,11 +40,11 @@
 	        	<h3 class="text-muted">Your todos</h3>
 			</div>
 			<div class="col-lg-8 col-sm-9 col-xs-12">
-		        <ul class="nav nav-pills pull-right">
-		        	<li class="active"><a href="#">Home</a></li>
-		        	<li><a href="#">About</a></li>
-		        	<li><a href="#">Contact</a></li>
-		        </ul>
+		        <ul class="nav nav-pills pull-right mainNavigation">
+                    <li class="active" id="homeNav"><a href="#">Home</a></li>
+                    <li id="aboutNav"><a href="#about">About</a></li>
+                    <li id="contactNav"><a href="#contact">Contact</a></li>
+                </ul>
 	        </div>
 		</div>
 
@@ -101,6 +101,7 @@
 	<script src="<?php echo URI; ?>/assets/js/views/Todo.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo URI; ?>/assets/js/views/TodoList.js" type="text/javascript" charset="utf-8"></script>
 
+	<script src="<?php echo URI; ?>/assets/js/router.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/javascript" charset="utf-8">
 
@@ -124,7 +125,6 @@
 		        }
 		    });
 
-			var todoListView = null;
 
 			$.fn.editable.defaults.mode = 'inline';
 
@@ -132,6 +132,10 @@
 						'<button type="button" class="btn btn-default btn-sm editable-cancel"><i class="glyphicon glyphicon-remove"></i></button> '+
 						'<button type="submit" class="btn btn-success btn-sm editable-submit"><i class="glyphicon glyphicon-ok"></i></button>';
 
+			var router = new Router();
+			Backbone.history.start();
+
+			var todoListView = null;
 			var todoList = new TodoList();
 
 			function initList()
