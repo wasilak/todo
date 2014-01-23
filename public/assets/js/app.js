@@ -39,11 +39,11 @@ var app = {
         };
 
         var todo = new TodoModel();
-
+        var $this = this;
         todo.save(todoDetails, {
             success: function(model, xhr, options)
             {
-                this.todoList.add(model);
+                $this.todoList.add(model);
                 inputField.val('');
                 dateField.val('');
             },
