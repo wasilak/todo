@@ -35,7 +35,7 @@
   <body>
 
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-4 col-sm-3 hidden-xs">
                 <a href="#" class="title"><h3 class="text-muted">Your todos</h3></a>
             </div>
@@ -46,9 +46,9 @@
                     <li id="contactNav"><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
 
-        <div class="tab-content">
+        <!-- <div class="tab-content"> -->
           <div class="tab-pane active" id="list">
             <div class="row">
                 <div class="col-lg-12">
@@ -79,13 +79,13 @@
                 </div>
             </div>
           </div>
-          <div class="tab-pane" id="about">
+          <!-- <div class="tab-pane" id="about">
               About :)
           </div>
           <div class="tab-pane" id="contact">
               Contact :)
           </div>
-        </div>
+        </div> -->
 
         <div class="footer">
             Todo by &copy; <a href="http://wasil.org">wasilak</a> <?php echo date("Y"); ?>
