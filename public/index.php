@@ -33,8 +33,8 @@ $app->delete('/todos/:id', function($id) use ($entityManager) {
 
 // list
 $app->get('/todos', function() use ($entityManager) {
-	$todoRepository = $entityManager->getRepository('\Wasilak\Models\Todo');
-	$todos = $todoRepository->findAll();
+	$query = $entityManager->createQuery('SELECT t from \Wasilak\Models\Todo t');
+	$todos = $query->getResult();
 
 	$data = array();
 

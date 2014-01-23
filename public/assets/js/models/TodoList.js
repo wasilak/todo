@@ -1,18 +1,12 @@
 var TodoList = Backbone.Collection.extend({
       model: TodoModel,
       url: 'todos',
-      comparator: function(todo)
-      {
-        var dateCreated = new Date(todo.get('createdAt'));
+      comparator: function (model1, model2) {
+        var date1 = new Date(model1.get('dueDate'));
+        var date2 = new Date(model2.get('dueDate'));
+        var completed1 = model1.get('completed');
+        var completed2 = model2.get('completed');
 
-        if (todo.get('dueDate')) {
-          var date = new Date(todo.get('dueDate'));
-          return -date.getTime();
-          // return [-dateCreated.getTime(), -date.getTime()];
-        }
-        // else {
-        //   return -dateCreated.getTime();
-        // }
-        return false;
+        return ((date1 >= date2 && completed1 <= completed2) || (date1 < date2 && completed1 < completed2)) ? -1 : 1;
       }
     });

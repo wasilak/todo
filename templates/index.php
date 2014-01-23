@@ -191,7 +191,7 @@
                 var name = inputField.val().trim();
                 var date = dateField.val().trim();
 
-                if ('' != name) {
+                if ('' !== name) {
                     var todoDetails = {
                         name: name,
                         dueDate: date
