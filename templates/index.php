@@ -124,8 +124,9 @@
 
     <script src="<?php echo URI; ?>/assets/js/router.js" type="text/javascript" charset="utf-8"></script>
 
-    <script type="text/javascript" charset="utf-8">
+    <script src="<?php echo URI; ?>/assets/js/app.js" type="text/javascript" charset="utf-8"></script>
 
+    <script type="text/javascript" charset="utf-8">
         $(document).ready(function()
         {
             $('.datepicker').datepicker({
@@ -146,94 +147,13 @@
                 }
             });
 
-
             $.fn.editable.defaults.mode = 'inline';
 
             $.fn.editableform.buttons =
                         '<button type="button" class="btn btn-default btn-sm editable-cancel"><i class="glyphicon glyphicon-remove"></i></button> ' +
                         '<button type="submit" class="btn btn-success btn-sm editable-submit"><i class="glyphicon glyphicon-ok"></i></button>';
 
-            var router = new Router();
-            Backbone.history.start();
-
-            var todoListView = null;
-            var todoList = new TodoList();
-
-            function initList()
-            {
-                todoListView = new TodoListView({collection: todoList, el: $('#todoList div.list-group')});
-                todoList.fetch({
-                    reset: true,
-                    success: function()
-                    {
-                        $('#todoList .loader').fadeOut('fast', function()
-                            {
-                                $('#todoList .list-group').fadeIn();
-                            }
-                        );
-                    }
-                });
-            }
-
-            initList();
-
-            setInterval(function()
-                {
-                  todoList.fetch();
-                }, 3000
-            );
-
-            function addTodo()
-            {
-                var inputField = $('#todoName');
-                var dateField = $('#todoDueDate');
-
-                var name = inputField.val().trim();
-                var date = dateField.val().trim();
-
-                if ('' !== name) {
-                    var todoDetails = {
-                        name: name,
-                        dueDate: date
-                    };
-
-                    var todo = new TodoModel();
-
-                    todo.save(todoDetails, {
-                        success: function(model, xhr, options)
-                        {
-                            todoList.add(model);
-                            inputField.val('');
-                            dateField.val('');
-                        },
-                        error: function(model, xhr, options)
-                        {
-                            // TODO: error handling
-                        }
-                    });
-                } else {
-                    // TODO: add better info about empty Todo name
-                    inputField.val('');
-                    alert('Todo name cannot be empty :/');
-                }
-            }
-
-            $('#todoName').keypress(function(e) {
-                if (e.which == 13) {
-                    addTodo();
-                }
-            });
-
-            $('#todoDueDate').keypress(function(e) {
-                if (e.which == 13) {
-                    addTodo();
-                }
-            });
-
-            $('#addTodo').click(function()
-            {
-                addTodo();
-            });
+            app.init();
         });
     </script>
   </body>
