@@ -1,4 +1,5 @@
 var TodoView = Backbone.View.extend({
+  template: _.template($('#todoTemplate').html()),
   tagName: 'a',
   className: 'list-group-item',
   events: {
@@ -6,7 +7,6 @@ var TodoView = Backbone.View.extend({
     'click input.checkTodo': 'checkTodo'
   },
   editable : false,
-  editable : '',
   initialize: function()
   {
     this.listenTo(this.model, 'change', this.render);
@@ -26,18 +26,11 @@ var TodoView = Backbone.View.extend({
     var date = '';
     var dateCombo = '';
 
-    if (dueDate){
-      date = moment(dueDate).calendar();
-      dateCombo = '<span class="dueContainer"><span class="due"> due </span><a href="#" class="dateCombo todoDate" data-type="combodate" data-value="'+dueDate+'" data-title="Select date">' + date + '</a></span>';
-    } else {
-      dateCombo = '<span class="dueContainer addDue"><span class="due"> add </span><a href="#" class="dateCombo todoDate" data-type="combodate" data-value="'+moment()+'" data-title="Select date">due date</a></span>';
-    }
-
-    var html = '<input type="checkbox" class="checkTodo" ' + this.checked + ' />'+
-                '<span class="editTodoLink">' + this.model.get('name') + '</span> '+
-                '<button type="button" class="btn btn-danger btn-xs pull-right removeTodoLink">delete</button>'+
-                dateCombo;
-    $(this.el).html(html);
+    $(this.el).html(this.template({
+      name: this.model.get('name'),
+      checked: this.checked,
+      dueDate: dueDate
+    }));
 
     this.editTodo(this.model);
     // this.initICheck();
